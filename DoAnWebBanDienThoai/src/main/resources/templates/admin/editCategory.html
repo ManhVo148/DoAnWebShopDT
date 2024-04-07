@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{admin/index}"
+      xmlns:th="http://www.w3.org/1999/xhtml"
+>
+<head>
+<body>
+<article layout:fragment="content1">
+    <div class="container">
+        <h1>Edit user</h1>
+        <form th:action="@{/category/editCategory/{id}}" th:object="${category}" method="post">
+            <input type="hidden" th:field="*{id}">
+            <div class="col-6 mb-3">
+                <label class="form-label" for="name">Loại sản phẩm:</label>
+                <input class="form-control" type="text" th:field="*{name}"id="name" required>
+                <!--        <span class="text-danger" th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></span>-->
+            </div>
+            <input type="submit"  value="Lưu loại sản phẩm">
+
+        </form>
+
+        <br>
+        <a th:href="@{/category/view}">Trờ lại trang</a>
+    </div>
+</article>
+</body>
+</html>

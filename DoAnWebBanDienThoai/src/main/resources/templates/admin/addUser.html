@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{admin/index}"
+      xmlns:th="http://www.w3.org/1999/xhtml"
+>
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<article layout:fragment="content1">
+    <div class="container">
+        <h1>Add user</h1>
+        <hr>
+        <form action="#" th:action="@{/user/save}" th:object="${user}" method="POST">
+            <input type="text" th:field="*{name}" placeholder="Tên người dùng" required class="form-control mb-4 col-4">
+            <input type="email" th:field="*{email}" placeholder="Email" required class="form-control mb-4 col-4">
+            <input type="password" th:field="*{password}" placeholder="Mật khẩu" required
+                   class="form-control mb-4 col-4">
+            <button type="submit" class="btn btn-info col-2">Lưu người duùng</button>
+        </form>
+        <hr>
+        <a th:href="@{/user/view}"> Trờ lại trang</a> </div>
+</article>
+</body>
+</html>

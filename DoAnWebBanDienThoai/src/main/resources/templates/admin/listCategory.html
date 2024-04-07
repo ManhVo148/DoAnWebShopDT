@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{admin/index}"
+      xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<article layout:fragment="content1">
+    <div class="container my-2">
+        <h1>Danh sách loại sản phẩm</h1>
+        <a th:href="@{/category/addCategory}"
+           class="btn btn-primary btn-sm mb-3"> Thêm loại sản phẩm </a>
+
+        <table border="1" class="table table-striped table-responsive-md">
+            <th>ID</th>
+            <th><a
+                    th:href="@{'/pageCategory/'+${currentPage}+'?sortField=name&sortDir='+${reverseSortDir}}"> Tên</a></th>
+            <th>Action</th>
+            <tbody>
+            <tr th:each="category : ${listCategory}">
+
+                <td th:text="${category.id}"></td>
+                <td th:text="${category.name}"></td>
+                <td><a th:href="@{/category/editCategory/{id}(id=${category.id})}">
+                    <i class="bi bi-pencil" style="font-size:32px"></i>
+                </a>
+                    <a th:href="@{/category/deleteCategory/{id}(id=${category.id})}"
+                       onclick="return confirm('Are you sure?')"
+                    ><i class="bi bi-x" style="font-size:32px"></i></a>
+                </td>
+
+
+            </tr>
+            </tbody>
+        </table>
+        <div th:if="${totalPages > 1}">
+            <div class="row col-sm-10">
+                <div class="col-sm-2">
+                    Total Rows: [[${totalItems}]]
+                </div>
+                <div class="col-sm-2">
+					<span th:each="i: ${#numbers.sequence(1, totalPages)}">
+						<a th:if="${currentPage != i}" th:href="@{'/pageCategory/' + ${i}+'?sortField='+${sortField}+'&sortDir='+${sortDir}}">[[${i}]]</a>
+						<span th:unless="${currentPage != i}">[[${i}]]</span> &nbsp;
+                        &nbsp;&nbsp; &nbsp;
+					</span>
+                </div>
+                <div class="col-sm-1">
+                    <a th:if="${currentPage < totalPages}"
+                       th:href="@{'/pageUser/' + ${currentPage + 1}+'?sortField='+${sortField}+'&sortDir='+${sortDir}}">Next</a><span
+                        th:unless="${currentPage < totalPages}">Next</span>
+                </div>
+
+                <div class="col-sm-1">
+                    <a th:if="${currentPage < totalPages}"
+                       th:href="@{'/pageCategory/' + ${totalPages}+'?sortField='+${sortField}+'&sortDir='+${sortDir}}">Last</a><span
+                        th:unless="${currentPage < totalPages}">Last</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</article>
+</body>
+</html>
+<script type="text/javascript">
+    function clearSearch() {
+      window.location = "[[@{/}]]";
+    }
+</script>

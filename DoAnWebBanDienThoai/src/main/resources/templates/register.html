@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org" >
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Corona Admin</title>
+    <!-- plugins:css -->
+    <link rel="stylesheet" href="Admin/assets/vendors/mdi/css/materialdesignicons.min.css">
+    <link rel="stylesheet" href="Admin/assets/vendors/css/vendor.bundle.base.css">
+    <!-- endinject -->
+    <!-- Plugin css for this page -->
+    <!-- End plugin css for this page -->
+    <!-- inject:css -->
+    <!-- endinject -->
+    <!-- Layout styles -->
+    <link rel="stylesheet" href="Admin/assets/css/style.css">
+    <!-- End layout styles -->
+    <link rel="shortcut icon" href="Admin/assets/images/favicon.png" />
+</head>
+<body>
+<div class="container-scroller">
+    <div class="container-fluid page-body-wrapper full-page-wrapper">
+        <div class="row w-100 m-0">
+            <div class="content-wrapper full-page-wrapper d-flex align-items-center auth login-bg">
+                <div class="card col-lg-4 mx-auto">
+                    <div class="card-body px-5 py-5">
+                        <div th:if="${param.success}">
+                            <div class="alert alert-info">You've successfully registered
+                                to our app!</div>
+                        </div>
+                        <h3 class="card-title text-left mb-3">Register</h3>
+                        <form method="post" role="form" th:action="@{/register/save}" th:object="${user}">
+                            <div class="form-group">
+                                <label class="form-label">First Name</label>
+                                <input class="form-control"
+                                       id="firstName"
+                                       name="firstName"
+                                       placeholder="Enter first name"
+                                       th:field="*{firstName}"
+                                       type="text"
+                                />
+                                <p th:errors="*{firstName}" class="text-danger"
+                                   th:if="${#fields.hasErrors('firstName')}">
+                                </p>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">Last Name</label>
+                                <input class="form-control"
+                                       id="lastName"
+                                       name="lastName"
+                                       placeholder="Enter last name"
+                                       th:field="*{lastName}"
+                                       type="text"
+                                />
+                                <p th:errors="*{lastName}" class="text-danger"
+                                   th:if="${#fields.hasErrors('lastName')}">
+                                </p>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">Email</label>
+                                <input class="form-control"
+                                       id="email"
+                                       name="email"
+                                       placeholder="Enter email address"
+                                       th:field="*{email}"
+                                       type="email"
+                                />
+                                <p th:errors="*{email}" class="text-danger"
+                                   th:if="${#fields.hasErrors('email')}">
+                                </p>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">Password</label>
+                                <input class="form-control"
+                                       id="password"
+                                       name="password"
+                                       placeholder="Enter password"
+                                       th:field="*{password}"
+                                       type="password"
+                                />
+                                <p th:errors="*{password}" class="text-danger"
+                                   th:if="${#fields.hasErrors('password')}">
+                                </p>
+                            </div>
+                            <div class="form-group d-flex align-items-center justify-content-between">
+                                <div class="form-check">
+                                    <label class="form-check-label">
+                                        <input type="checkbox" class="form-check-input"> Remember me </label>
+                                </div>
+                                <a href="#" class="forgot-pass">Forgot password</a>
+                            </div>
+                            <div class="text-center">
+                                <button type="submit" class="btn btn-primary btn-block enter-btn">Register</button>
+                            </div>
+                            <div class="d-flex">
+                                <button class="btn btn-facebook col mr-2">
+                                    <i class="mdi mdi-facebook"></i> Facebook </button>
+                                <button class="btn btn-google col">
+                                    <i class="mdi mdi-google-plus"></i> Google plus </button>
+                            </div>
+                            <p class="sign-up text-center">Already have an Account?<a href="/" th:href="@{/login}"> Sign Up</a></p>
+                            <p class="terms">By creating an account you are accepting our<a href="#"> Terms & Conditions</a></p>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <!-- content-wrapper ends -->
+        </div>
+        <!-- row ends -->
+    </div>
+    <!-- page-body-wrapper ends -->
+</div>
+<!-- container-scroller -->
+<!-- plugins:js -->
+<!-- endinject -->
+<!-- Plugin js for this page -->
+<!-- End plugin js for this page -->
+<!-- inject:js -->
+<!-- endinject -->
+</body>
+</html>

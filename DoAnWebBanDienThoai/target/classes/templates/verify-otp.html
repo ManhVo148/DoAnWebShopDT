@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Forgot Password</title>
+
+</head>
+<body>
+<h2>Otp Verification</h2>
+
+<!-- Form để nhập email và nhận mã OTP -->
+<form id="otpForm" th:action="@{/verifyOtp}" method="post">
+    <label for="otp">Enter OTP:</label>
+    <input type="text" id="otp" name="otp" required>
+    <button type="submit" >Verify OTP</button>
+</form>
+
+</body>
+</html>

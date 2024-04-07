@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{admin/index}"
+      xmlns:th="http://www.w3.org/1999/xhtml"
+>
+<head>
+<body>
+<article layout:fragment="content1">
+<div class="container">
+    <h1>Edit Product</h1>
+    <form th:action="@{/product/edit/{id}}" th:object="${product}" method="post">
+        <input type="hidden" th:field="*{id}">
+        <div class="col-6 mb-3">
+            <label class="form-label" for="title">Tên sản phẩm:</label>
+            <input class="form-control" type="text" th:field="*{name}"id="title" required>
+        </div>
+        <div class="col-6 mb-3">
+            <label class="form-label" for="quantity">Số lượng:</label>
+            <input class="form-control" type="text" th:field="*{quantity}"id="quantity" required min="1">
+        </div>
+        <div class="col-6 mb-3">
+            <label class="form-label" for="price">Giá tiền:</label>
+            <input class="form-control" type="text" th:field="*{price}"id="price" required min="1000">
+        </div>
+        <div class="col-6 mb-3">
+            <label class="form-label" for="category">Loại:</label>
+            <select class="form-control" id="category" name="category.id" required>
+                <option value="" >Chọn loại sản phẩm</option>
+                <option th:each="category : ${categories}" th:value="${category.id}"
+                        th:text="${category.name}"></option>
+            </select>
+        </div>
+        <input type="submit"  value="Lưu sản phẩm">
+
+    </form>
+
+    <br>
+    <a th:href="@{/product/view}">Trở lại trang</a>
+</div>
+</article>
+</body>
+</html>
